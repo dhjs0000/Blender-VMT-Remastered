@@ -4,10 +4,10 @@
 
 ![Logo](icons/Blender-VMT%20%5B256x256%5D.ico)
 
-[![License]( https://img.shields.io/badge/license-GPL3-blue.svg )](LICENSE)
-[![Python]( https://img.shields.io/badge/python-3.8 +-blue.svg)]( https://www.python.org/downloads/ )
-[![PyQt]( https://img.shields.io/badge/PyQt-6.0 +-green.svg)]( https://www.riverbankcomputing.com/software/pyqt/ )
-[![Platform]( https://img.shields.io/badge/platform-Windows%20 |%20Linux%20|%20macOS-lightgrey.svg)]( https://github.com/your-username/blender-version-manager )
+[![License](https://img.shields.io/badge/license-GPL3-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![PyQt](https://img.shields.io/badge/PyQt-6.0+-green.svg)](https://www.riverbankcomputing.com/software/pyqt/)
+[![Platform](https://img.shields.io/badge/platform-Windows%20|%20Linux%20|%20macOS-lightgrey.svg)](https://github.com/your-username/blender-version-manager)
 
 [Simplified Chinese] (README. md) | [English] (README-en. md)
 
