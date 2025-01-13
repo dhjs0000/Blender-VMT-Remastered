@@ -1,0 +1,304 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ja_JP\n"
+
+# メインウィンドウのタイトルとメニュー
+msgid "Blender 版本管理器"
+msgstr "Blender バージョンマネージャー"
+
+msgid "一个用于管理 Blender 版本的工具。\n\n本软件完全免费开源、禁止在没有许可的情况下商用。"
+msgstr "Blender のバージョンを管理するためのツールです。\n\nこのソフトウェアは完全に無料でオープンソースです。許可なしの商用利用は禁止されています。"
+
+# タブタイトル
+msgid "版本管理"
+msgstr "バージョン管理"
+
+msgid "用户设置管理"
+msgstr "ユーザー設定"
+
+msgid "版本插件管理"
+msgstr "プラグイン管理"
+
+# メニュー項目
+msgid "文件"
+msgstr "ファイル"
+
+msgid "偏好设置"
+msgstr "設定"
+
+msgid "退出"
+msgstr "終了"
+
+msgid "帮助"
+msgstr "ヘルプ"
+
+msgid "关于"
+msgstr "バージョン情報"
+
+# ボタンとツールチップ
+msgid "启动 Blender"
+msgstr "Blender を起動"
+
+msgid "添加 Blender 版本"
+msgstr "Blender バージョンを追加"
+
+msgid "编辑 Blender 版本"
+msgstr "Blender バージョンを編集"
+
+msgid "删除 Blender 版本"
+msgstr "Blender バージョンを削除"
+
+msgid "卸载 Blender 版本"
+msgstr "Blender バージョンをアンインストール"
+
+msgid "下载 Blender 版本"
+msgstr "Blender バージョンをダウンロード"
+
+msgid "备份/还原 Blender 版本"
+msgstr "バックアップ/復元"
+
+# バージョン管理
+msgid "选择大版本"
+msgstr "メジャーバージョンを選択"
+
+msgid "选择小版本"
+msgstr "マイナーバージョンを選択"
+
+msgid "下载进度"
+msgstr "ダウンロード進捗"
+
+msgid "正在下载..."
+msgstr "ダウンロード中..."
+
+msgid "下载完成"
+msgstr "ダウンロード完了"
+
+msgid "下载失败"
+msgstr "ダウンロード失敗"
+
+# 共通ボタン
+msgid "取消"
+msgstr "キャンセル"
+
+msgid "确认"
+msgstr "確認"
+
+msgid "保存"
+msgstr "保存"
+
+msgid "浏览"
+msgstr "参照"
+
+# メッセージタイプ
+msgid "警告"
+msgstr "警告"
+
+msgid "错误"
+msgstr "エラー"
+
+msgid "信息"
+msgstr "情報"
+
+msgid "成功"
+msgstr "成功"
+
+# テーマ設定
+msgid "主题"
+msgstr "テーマ"
+
+msgid "System"
+msgstr "システム"
+
+msgid "Dark"
+msgstr "ダーク"
+
+msgid "Light"
+msgstr "ライト"
+
+# 言語設定
+msgid "语言"
+msgstr "言語"
+
+msgid "语言设置将在重启程序后生效。"
+msgstr "言語設定は、プログラムを再起動後に有効になります。"
+
+# ファイル選択ダイアログ
+msgid "选择 Blender 可执行文件"
+msgstr "Blender 実行ファイルを選択"
+
+msgid "Executable files (*.exe)"
+msgstr "実行ファイル (*.exe)"
+
+msgid "选择 Blender 版本列表文件夹"
+msgstr "Blender バージョンリストフォルダを選択"
+
+# 入力ダイアログ
+msgid "输入名称"
+msgstr "名前を入力"
+
+msgid "为此 Blender 版本输入一个名称:"
+msgstr "この Blender バージョンの名前を入力してください:"
+
+# エラーメッセージ
+msgid "名称不能为空。"
+msgstr "名前を入力してください。"
+
+msgid "请选择一个 Blender 版本。"
+msgstr "Blender バージョンを選択してください。"
+
+msgid "确认删除"
+msgstr "削除の確認"
+
+msgid "确定要删除 {0} 吗？"
+msgstr "{0} を削除してもよろしいですか？"
+
+msgid "Blender 版本已删除。"
+msgstr "Blender バージョンが削除されました。"
+
+msgid "找不到 {0} 的路径。"
+msgstr "{0} のパスが見つかりません。"
+
+# ユーザー設定
+msgid "选择 Blender 版本:"
+msgstr "Blender バージョンを選択:"
+
+msgid "纹理目录:"
+msgstr "テクスチャディレクトリ:"
+
+msgid "脚本目录:"
+msgstr "スクリプトディレクトリ:"
+
+msgid "保存设置"
+msgstr "設定を保存"
+
+# プラグイン管理
+msgid "插件模式:"
+msgstr "プラグインモード:"
+
+msgid "用户"
+msgstr "ユーザー"
+
+msgid "系统"
+msgstr "システム"
+
+msgid "插件名称"
+msgstr "プラグイン名"
+
+msgid "状态"
+msgstr "状態"
+
+msgid "安装插件"
+msgstr "プラグインをインストール"
+
+msgid "卸载插件"
+msgstr "プラグインをアンインストール"
+
+msgid "启用插件"
+msgstr "プラグインを有効化"
+
+msgid "禁用插件"
+msgstr "プラグインを無効化"
+
+msgid "刷新列表"
+msgstr "リストを更新"
+
+msgid "已启用"
+msgstr "有効"
+
+msgid "已禁用"
+msgstr "無効"
+
+# バックアップ/復元
+msgid "备份/还原"
+msgstr "バックアップ/復元"
+
+msgid "备份版本"
+msgstr "バージョンをバックアップ"
+
+msgid "备份版本名称:"
+msgstr "バックアップバージョン名:"
+
+msgid "备份"
+msgstr "バックアップ"
+
+msgid "还原"
+msgstr "復元"
+
+msgid "删除备份"
+msgstr "バックアップを削除"
+
+msgid "导入备份"
+msgstr "バックアップをインポート"
+
+msgid "导出备份"
+msgstr "バックアップをエクスポート"
+
+# ダウンロード関連
+msgid "下载源:"
+msgstr "ダウンロード元:"
+
+msgid "下载线程数:"
+msgstr "ダウンロードスレッド数:"
+
+msgid "总体进度"
+msgstr "全体の進捗"
+
+msgid "下载日志"
+msgstr "ダウンロードログ"
+
+msgid "已下载: {0} / {1} ({2}%)"
+msgstr "ダウンロード済み: {0} / {1} ({2}%)"
+
+msgid "下载速度: {0}/s (剩余时间: {1})"
+msgstr "ダウンロード速度: {0}/s (残り時間: {1})"
+
+msgid "连接超时，请检查网络连接"
+msgstr "接続がタイムアウトしました。ネットワーク接続を確認してください。"
+
+msgid "正在取消下载..."
+msgstr "ダウンロードをキャンセル中..."
+
+msgid "下载已取消"
+msgstr "ダウンロードがキャンセルされました"
+
+msgid "初始化下载服务失败"
+msgstr "ダウンロードサービスの初期化に失敗しました"
+
+# その他の設定
+msgid "文件夹路径设置"
+msgstr "フォルダパスの設定"
+
+msgid "下载设置"
+msgstr "ダウンロード設定"
+
+msgid "Blender 版本列表文件夹路径:"
+msgstr "Blender バージョンリストフォルダのパス:"
+
+msgid "备份文件夹路径:"
+msgstr "バックアップフォルダのパス:"
+
+msgid "自动获取文件夹 Blender 版本列表"
+msgstr "フォルダから Blender バージョンリストを自動取得"
+
+# バージョン情報
+msgid "当前版本"
+msgstr "現在のバージョン"
+
+msgid "最新版本"
+msgstr "最新バージョン"
+
+msgid "更新日志"
+msgstr "更新履歴"
+
+msgid "开始更新"
+msgstr "更新を開始"
+
+msgid "暂不更新"
+msgstr "後で更新"
+
+msgid "立即重启"
+msgstr "今すぐ再起動"
+
+msgid "稍后重启"
+msgstr "後で再起動" 

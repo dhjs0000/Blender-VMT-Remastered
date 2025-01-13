@@ -1,0 +1,304 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: de_DE\n"
+
+# Hauptfenstertitel und Menü
+msgid "Blender 版本管理器"
+msgstr "Blender Version Manager"
+
+msgid "一个用于管理 Blender 版本的工具。\n\n本软件完全免费开源、禁止在没有许可的情况下商用。"
+msgstr "Ein Tool zur Verwaltung von Blender-Versionen.\n\nDiese Software ist vollständig kostenlos und Open Source, kommerzielle Nutzung ist ohne Genehmigung untersagt."
+
+# Tab-Titel
+msgid "版本管理"
+msgstr "Versionsverwaltung"
+
+msgid "用户设置管理"
+msgstr "Benutzereinstellungen"
+
+msgid "版本插件管理"
+msgstr "Plugin-Verwaltung"
+
+# Menüpunkte
+msgid "文件"
+msgstr "Datei"
+
+msgid "偏好设置"
+msgstr "Einstellungen"
+
+msgid "退出"
+msgstr "Beenden"
+
+msgid "帮助"
+msgstr "Hilfe"
+
+msgid "关于"
+msgstr "Über"
+
+# Schaltflächen und Tooltips
+msgid "启动 Blender"
+msgstr "Blender starten"
+
+msgid "添加 Blender 版本"
+msgstr "Blender-Version hinzufügen"
+
+msgid "编辑 Blender 版本"
+msgstr "Blender-Version bearbeiten"
+
+msgid "删除 Blender 版本"
+msgstr "Blender-Version löschen"
+
+msgid "卸载 Blender 版本"
+msgstr "Blender-Version deinstallieren"
+
+msgid "下载 Blender 版本"
+msgstr "Blender-Version herunterladen"
+
+msgid "备份/还原 Blender 版本"
+msgstr "Backup/Wiederherstellung"
+
+# Versionsverwaltung
+msgid "选择大版本"
+msgstr "Hauptversion auswählen"
+
+msgid "选择小版本"
+msgstr "Unterversion auswählen"
+
+msgid "下载进度"
+msgstr "Download-Fortschritt"
+
+msgid "正在下载..."
+msgstr "Wird heruntergeladen..."
+
+msgid "下载完成"
+msgstr "Download abgeschlossen"
+
+msgid "下载失败"
+msgstr "Download fehlgeschlagen"
+
+# Allgemeine Schaltflächen
+msgid "取消"
+msgstr "Abbrechen"
+
+msgid "确认"
+msgstr "Bestätigen"
+
+msgid "保存"
+msgstr "Speichern"
+
+msgid "浏览"
+msgstr "Durchsuchen"
+
+# Nachrichtentypen
+msgid "警告"
+msgstr "Warnung"
+
+msgid "错误"
+msgstr "Fehler"
+
+msgid "信息"
+msgstr "Information"
+
+msgid "成功"
+msgstr "Erfolgreich"
+
+# Theme-Einstellungen
+msgid "主题"
+msgstr "Theme"
+
+msgid "System"
+msgstr "System"
+
+msgid "Dark"
+msgstr "Dunkel"
+
+msgid "Light"
+msgstr "Hell"
+
+# Spracheinstellungen
+msgid "语言"
+msgstr "Sprache"
+
+msgid "语言设置将在重启程序后生效。"
+msgstr "Spracheinstellungen werden nach einem Neustart des Programms wirksam."
+
+# Dateiauswahldialoge
+msgid "选择 Blender 可执行文件"
+msgstr "Blender-Programmdatei auswählen"
+
+msgid "Executable files (*.exe)"
+msgstr "Ausführbare Dateien (*.exe)"
+
+msgid "选择 Blender 版本列表文件夹"
+msgstr "Blender-Versionslistenordner auswählen"
+
+# Eingabedialoge
+msgid "输入名称"
+msgstr "Namen eingeben"
+
+msgid "为此 Blender 版本输入一个名称:"
+msgstr "Geben Sie einen Namen für diese Blender-Version ein:"
+
+# Fehlermeldungen
+msgid "名称不能为空。"
+msgstr "Der Name darf nicht leer sein."
+
+msgid "请选择一个 Blender 版本。"
+msgstr "Bitte wählen Sie eine Blender-Version aus."
+
+msgid "确认删除"
+msgstr "Löschen bestätigen"
+
+msgid "确定要删除 {0} 吗？"
+msgstr "Möchten Sie {0} wirklich löschen?"
+
+msgid "Blender 版本已删除。"
+msgstr "Blender-Version wurde gelöscht."
+
+msgid "找不到 {0} 的路径。"
+msgstr "Pfad für {0} nicht gefunden."
+
+# Benutzereinstellungen
+msgid "选择 Blender 版本:"
+msgstr "Blender-Version auswählen:"
+
+msgid "纹理目录:"
+msgstr "Texturverzeichnis:"
+
+msgid "脚本目录:"
+msgstr "Skriptverzeichnis:"
+
+msgid "保存设置"
+msgstr "Einstellungen speichern"
+
+# Plugin-Verwaltung
+msgid "插件模式:"
+msgstr "Plugin-Modus:"
+
+msgid "用户"
+msgstr "Benutzer"
+
+msgid "系统"
+msgstr "System"
+
+msgid "插件名称"
+msgstr "Plugin-Name"
+
+msgid "状态"
+msgstr "Status"
+
+msgid "安装插件"
+msgstr "Plugin installieren"
+
+msgid "卸载插件"
+msgstr "Plugin deinstallieren"
+
+msgid "启用插件"
+msgstr "Plugin aktivieren"
+
+msgid "禁用插件"
+msgstr "Plugin deaktivieren"
+
+msgid "刷新列表"
+msgstr "Liste aktualisieren"
+
+msgid "已启用"
+msgstr "Aktiviert"
+
+msgid "已禁用"
+msgstr "Deaktiviert"
+
+# Backup/Wiederherstellung
+msgid "备份/还原"
+msgstr "Backup/Wiederherstellung"
+
+msgid "备份版本"
+msgstr "Version sichern"
+
+msgid "备份版本名称:"
+msgstr "Backup-Versionsname:"
+
+msgid "备份"
+msgstr "Sichern"
+
+msgid "还原"
+msgstr "Wiederherstellen"
+
+msgid "删除备份"
+msgstr "Backup löschen"
+
+msgid "导入备份"
+msgstr "Backup importieren"
+
+msgid "导出备份"
+msgstr "Backup exportieren"
+
+# Download-bezogen
+msgid "下载源:"
+msgstr "Download-Quelle:"
+
+msgid "下载线程数:"
+msgstr "Download-Threads:"
+
+msgid "总体进度"
+msgstr "Gesamtfortschritt"
+
+msgid "下载日志"
+msgstr "Download-Protokoll"
+
+msgid "已下载: {0} / {1} ({2}%)"
+msgstr "Heruntergeladen: {0} / {1} ({2}%)"
+
+msgid "下载速度: {0}/s (剩余时间: {1})"
+msgstr "Download-Geschwindigkeit: {0}/s (Verbleibende Zeit: {1})"
+
+msgid "连接超时，请检查网络连接"
+msgstr "Zeitüberschreitung der Verbindung, bitte überprüfen Sie Ihre Netzwerkverbindung"
+
+msgid "正在取消下载..."
+msgstr "Download wird abgebrochen..."
+
+msgid "下载已取消"
+msgstr "Download abgebrochen"
+
+msgid "初始化下载服务失败"
+msgstr "Initialisierung des Download-Dienstes fehlgeschlagen"
+
+# Weitere Einstellungen
+msgid "文件夹路径设置"
+msgstr "Ordnerpfad-Einstellungen"
+
+msgid "下载设置"
+msgstr "Download-Einstellungen"
+
+msgid "Blender 版本列表文件夹路径:"
+msgstr "Blender-Versionslistenordner-Pfad:"
+
+msgid "备份文件夹路径:"
+msgstr "Backup-Ordnerpfad:"
+
+msgid "自动获取文件夹 Blender 版本列表"
+msgstr "Blender-Versionsliste automatisch aus Ordner abrufen"
+
+# Versionsinformationen
+msgid "当前版本"
+msgstr "Aktuelle Version"
+
+msgid "最新版本"
+msgstr "Neueste Version"
+
+msgid "更新日志"
+msgstr "Update-Protokoll"
+
+msgid "开始更新"
+msgstr "Update starten"
+
+msgid "暂不更新"
+msgstr "Später aktualisieren"
+
+msgid "立即重启"
+msgstr "Jetzt Neustarten"
+
+msgid "稍后重启"
+msgstr "Später Neustarten" 

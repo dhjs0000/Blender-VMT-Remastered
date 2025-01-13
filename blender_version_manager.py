@@ -21,6 +21,7 @@ import atexit
 import signal
 import locale
 import psutil
+import json
 from PyQt6.QtNetwork import QLocalSocket, QLocalServer
 
 # 设置控制台编码为 UTF-8
@@ -219,13 +220,165 @@ for package in ['bpy', 'requests', 'bs4']:
 LOCALE_DIR = './lang'
 DEFAULT_LANGUAGE = 'zh_CN'  # 默认语言
 
+def load_language_from_json():
+    """从JSON文件加载语言数据"""
+    try:
+        # 检查语言文件夹是否存在
+        if not os.path.exists(LOCALE_DIR):
+            os.makedirs(LOCALE_DIR)
+        
+        # 加载语言配置
+        languages_file = os.path.join(LOCALE_DIR, 'languages.json')
+        if not os.path.exists(languages_file):
+            # 如果配置文件不存在，从在线获取
+            try:
+                url = "https://raw.githubusercontent.com/dhjs0000/Blender-VMT-Remastered/main/lang/languages.json"
+                response = requests.get(url)
+                response.raise_for_status()
+                with open(languages_file, 'w', encoding='utf-8') as f:
+                    f.write(response.text)
+                logging.info("成功下载语言配置文件")
+            except Exception as e:
+                logging.error(f"下载语言配置文件失败: {e}")
+                return
+        
+        # 读取语言配置
+        with open(languages_file, 'r', encoding='utf-8') as f:
+            languages_config = json.load(f)
+        
+        # 处理每种语言
+        for lang_code, lang_info in languages_config.items():
+            lang_dir = os.path.join(LOCALE_DIR, lang_code, 'LC_MESSAGES')
+            os.makedirs(lang_dir, exist_ok=True)
+            
+            # 构建.po文件路径
+            po_file = os.path.join(lang_dir, 'messages.po')
+            
+            # 如果.po文件不存在，从在线获取
+            if not os.path.exists(po_file):
+                try:
+                    # 从GitHub获取语言文件
+                    url = f"https://raw.githubusercontent.com/dhjs0000/Blender-VMT-Remastered/main/lang/{lang_code}/LC_MESSAGES/messages.po"
+                    response = requests.get(url)
+                    response.raise_for_status()
+                    
+                    # 保存语言文件
+                    with open(po_file, 'w', encoding='utf-8') as f:
+                        f.write(response.text)
+                    
+                    logging.info(f"成功下载语言文件: {lang_code}")
+                except Exception as e:
+                    logging.error(f"下载语言文件失败 {lang_code}: {e}")
+                    continue
+            
+            # 编译.mo文件
+            try:
+                mo_file = os.path.join(lang_dir, 'messages.mo')
+                if not os.path.exists(mo_file) or os.path.getmtime(po_file) > os.path.getmtime(mo_file):
+                    from babel.messages.mofile import write_mo
+                    from babel.messages.pofile import read_po
+                    
+                    with open(po_file, 'r', encoding='utf-8') as f:
+                        catalog = read_po(f)
+                    
+                    with open(mo_file, 'wb') as f:
+                        write_mo(f, catalog)
+                    
+                    logging.info(f"成功编译语言文件: {lang_code}")
+            except Exception as e:
+                logging.error(f"编译语言文件失败 {lang_code}: {e}")
+    except Exception as e:
+        logging.error(f"加载语言文件失败: {e}")
+
+def update_language_files():
+    """更新语言文件"""
+    try:
+        # 获取在线语言配置
+        url = "https://raw.githubusercontent.com/dhjs0000/Blender-VMT-Remastered/main/lang/languages.json"
+        response = requests.get(url)
+        response.raise_for_status()
+        online_languages = json.loads(response.text)
+        
+        # 读取本地语言配置
+        languages_file = os.path.join(LOCALE_DIR, 'languages.json')
+        local_languages = {}
+        if os.path.exists(languages_file):
+            with open(languages_file, 'r', encoding='utf-8') as f:
+                local_languages = json.load(f)
+        
+        # 比较版本并更新
+        for lang_code, lang_info in online_languages.items():
+            if (lang_code not in local_languages or 
+                local_languages[lang_code]['version'] < lang_info['version']):
+                # 下载新版本的语言文件
+                lang_dir = os.path.join(LOCALE_DIR, lang_code, 'LC_MESSAGES')
+                os.makedirs(lang_dir, exist_ok=True)
+                
+                url = f"https://raw.githubusercontent.com/dhjs0000/Blender-VMT-Remastered/main/lang/{lang_code}/LC_MESSAGES/messages.po"
+                response = requests.get(url)
+                response.raise_for_status()
+                
+                po_file = os.path.join(lang_dir, 'messages.po')
+                with open(po_file, 'w', encoding='utf-8') as f:
+                    f.write(response.text)
+                
+                # 编译新的语言文件
+                mo_file = os.path.join(lang_dir, 'messages.mo')
+                from babel.messages.mofile import write_mo
+                from babel.messages.pofile import read_po
+                
+                with open(po_file, 'r', encoding='utf-8') as f:
+                    catalog = read_po(f)
+                
+                with open(mo_file, 'wb') as f:
+                    write_mo(f, catalog)
+                
+                logging.info(f"更新语言文件: {lang_code} -> 版本 {lang_info['version']}")
+        
+        # 保存新的语言配置
+        with open(languages_file, 'w', encoding='utf-8') as f:
+            json.dump(online_languages, f, indent=2)
+        
+    except Exception as e:
+        logging.error(f"更新语言文件失败: {e}")
+
+def get_available_languages():
+    """获取可用的语言列表"""
+    try:
+        languages_file = os.path.join(LOCALE_DIR, 'languages.json')
+        if os.path.exists(languages_file):
+            with open(languages_file, 'r', encoding='utf-8') as f:
+                languages = json.load(f)
+                return languages
+        return {}
+    except Exception as e:
+        logging.error(f"获取语言列表失败: {e}")
+        return {}
+
+# 修改 set_language 函数
 def set_language(language):
-    gettext.bindtextdomain('messages', LOCALE_DIR)
-    gettext.textdomain('messages')
-    lang = gettext.translation('messages', LOCALE_DIR, languages=[language], fallback=True)
-    lang.install()
-    global _
-    _ = lang.gettext
+    """设置语言环境"""
+    try:
+        # 确保语言文件存在
+        load_language_from_json()
+        
+        # 尝试更新语言文件
+        update_language_files()
+        
+        # 设置语言
+        gettext.bindtextdomain('messages', LOCALE_DIR)
+        gettext.textdomain('messages')
+        lang = gettext.translation('messages', LOCALE_DIR, languages=[language], fallback=True)
+        lang.install()
+        global _
+        _ = lang.gettext
+        
+        logging.info(f"设置语言: {language}")
+    except Exception as e:
+        logging.error(f"设置语言失败: {e}")
+        # 如果设置失败，使用默认语言
+        if language != DEFAULT_LANGUAGE:
+            set_language(DEFAULT_LANGUAGE)
 
 # 获取用户目录路径
 USER_DIR = os.path.expanduser("~")
@@ -1591,6 +1744,42 @@ for addon in bpy.context.preferences.addons.keys():
                 Q_ARG(str, str(e))
             )
 
+    def update_version_list(self):
+        """更新版本列表"""
+        logging.info("开始更新版本列表")
+        
+        # 获取文件夹路径
+        folder_path = self.config.get('PREFERENCES', 'FolderPath', fallback='')
+        if not folder_path or not os.path.exists(folder_path):
+            logging.warning("文件夹路径不存在")
+            return
+        
+        # 清空当前版本列表
+        self.config['VERSIONS'] = {}
+        
+        # 遍历文件夹
+        for root, dirs, files in os.walk(folder_path):
+            for dir_name in dirs:
+                if dir_name.startswith('Blender '):
+                    # 查找 blender.exe
+                    blender_dir = os.path.join(root, dir_name)
+                    for sub_root, _, sub_files in os.walk(blender_dir):
+                        for file in sub_files:
+                            if file.lower() == 'blender.exe':
+                                blender_exe = os.path.join(sub_root, file)
+                                version_name = dir_name.lower()
+                                logging.debug(f"添加版本: {version_name} -> {blender_exe}")
+                                self.config['VERSIONS'][version_name] = blender_exe
+                                break
+        
+        # 保存配置
+        self.save_config()
+        
+        # 更新界面
+        self.populate_versions()
+        
+        logging.info("版本列表更新完成")
+
 class BackupRestoreDialog(QDialog):
     def __init__(self, parent, title, version_name):
         super().__init__(parent)
@@ -1847,6 +2036,7 @@ class PreferencesDialog(QDialog):
         self.resize(500, 400)
         
         self.config = config
+        self.config_file = CONFIG_FILE  # 添加配置文件路径
         self.init_ui()
     
     def init_ui(self):
@@ -1868,26 +2058,29 @@ class PreferencesDialog(QDialog):
         folder_layout = QVBoxLayout()
         
         folder_path_layout = QHBoxLayout()
+        folder_path_label = QLabel(_("Blender 文件夹:"))
         folder_path = QLineEdit()
         folder_path.setText(self.config.get('PREFERENCES', 'FolderPath', fallback=''))
         browse_button = QPushButton(_("浏览"))
         browse_button.clicked.connect(lambda: self.browse_folder(folder_path))
+        folder_path_layout.addWidget(folder_path_label)
         folder_path_layout.addWidget(folder_path)
         folder_path_layout.addWidget(browse_button)
         folder_layout.addLayout(folder_path_layout)
         
         backup_folder_layout = QHBoxLayout()
+        backup_folder_label = QLabel(_("备份文件夹:"))
         backup_folder = QLineEdit()
         backup_folder.setText(self.config.get('PREFERENCES', 'BackupFolder', fallback=''))
         backup_browse_button = QPushButton(_("浏览"))
         backup_browse_button.clicked.connect(lambda: self.browse_folder(backup_folder))
+        backup_folder_layout.addWidget(backup_folder_label)
         backup_folder_layout.addWidget(backup_folder)
         backup_folder_layout.addWidget(backup_browse_button)
         folder_layout.addLayout(backup_folder_layout)
         
         folder_group.setLayout(folder_layout)
         general_layout.addWidget(folder_group)
-        
         # 下载设置
         download_group = QGroupBox(_("下载设置"))
         download_layout = QVBoxLayout()
@@ -1926,8 +2119,22 @@ class PreferencesDialog(QDialog):
         language_layout = QHBoxLayout()
         language_label = QLabel(_("语言:"))
         language_choice = QComboBox()
-        language_choice.addItems(['zh_CN', 'en_US'])
-        language_choice.setCurrentText(self.config.get('PREFERENCES', 'Language', fallback=DEFAULT_LANGUAGE))
+        
+        # 从 languages.json 读取语言列表
+        try:
+            with open(os.path.join('lang', 'languages.json'), 'r', encoding='utf-8') as f:
+                languages_data = json.load(f)
+                for lang_code, lang_info in languages_data.items():
+                    language_choice.addItem(lang_info['name'], lang_code)  # 显示本地化名称，存储语言代码
+                    # 设置当前选中的语言
+                    if lang_code == self.config.get('PREFERENCES', 'Language', fallback=DEFAULT_LANGUAGE):
+                        language_choice.setCurrentIndex(language_choice.count() - 1)
+        except Exception as e:
+            logging.error(f"加载语言配置失败: {e}")
+            # 如果加载失败，添加默认选项
+            language_choice.addItems(['zh_CN', 'en_US'])
+            language_choice.setCurrentText(self.config.get('PREFERENCES', 'Language', fallback=DEFAULT_LANGUAGE))
+        
         language_layout.addWidget(language_label)
         language_layout.addWidget(language_choice)
         general_layout.addLayout(language_layout)
@@ -1942,7 +2149,7 @@ class PreferencesDialog(QDialog):
             source_url.text(),
             thread_count.value(),
             theme_choice.currentText(),
-            language_choice.currentText()
+            language_choice.currentData()  # 使用 currentData 获取语言代码而不是显示文本
         ))
         button_layout.addWidget(save_button)
         
@@ -1974,16 +2181,34 @@ class PreferencesDialog(QDialog):
             'Language': language
         })
         
+        # 保存配置到文件
+        with open(self.config_file, 'w', encoding='utf-8') as f:
+            self.config.write(f)
+        
         # 立即应用主题
         self.parent().apply_theme(theme)
         
+        # 如果开启了自动获取，立即更新版本列表
+        if auto_fetch:
+            self.parent().update_version_list()
+        
         # 如果语言改变了，提示需要重启
         if language != self.config.get('PREFERENCES', 'Language', fallback=DEFAULT_LANGUAGE):
-            QMessageBox.information(
-                self,
-                _("提示"),
-                _("语言设置将在重启程序后生效。")
+            restart_msg = QMessageBox(self)
+            restart_msg.setIcon(QMessageBox.Icon.Information)
+            restart_msg.setWindowTitle(_("提示"))
+            restart_msg.setText(_("语言设置将在重启程序后生效。"))
+            restart_msg.setStandardButtons(
+                QMessageBox.StandardButton.Yes | 
+                QMessageBox.StandardButton.No
             )
+            restart_msg.button(QMessageBox.StandardButton.Yes).setText(_("立即重启"))
+            restart_msg.button(QMessageBox.StandardButton.No).setText(_("稍后重启"))
+            
+            if restart_msg.exec() == QMessageBox.StandardButton.Yes:
+                # 重启程序
+                python = sys.executable
+                os.execl(python, python, *sys.argv)
         
         self.accept()
 

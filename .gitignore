@@ -4,4 +4,4 @@ build/
 dist/
 *.spec
 .vscode/
-log/ 
+log/
